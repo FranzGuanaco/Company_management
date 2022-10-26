@@ -1,6 +1,7 @@
 .square_user {
     height: 200px;
     width: 500px;
-    background-color: #555;
+    border: 1px solid black;
+    border-radius: 12px;
 
 }

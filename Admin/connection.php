@@ -3,10 +3,11 @@
 $host= "localhost";
 $user = "root";
 $password = "root";
-$db = "dbClient";
+$db = "Corporate_management";
 
 
 $con = mysqli_connect($host, $user, $password, $db);
+$total = "SELECT * FROM 'Employees'";
 
 if (!$con) {
 
