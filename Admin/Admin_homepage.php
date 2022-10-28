@@ -1,16 +1,27 @@
 <?php
-$host= "localhost";
-$user = "root";
-$password = "root";
-$db = "Corporate_management";
+
+
+require 'connection.php';
 
 
 $con = mysqli_connect($host, $user, $password, $db);
 
 $all = "SELECT * FROM `Employees`";
 
+$testemplo =$EmployeeData['Id'];
+$test = "SELECT * FROM `Employees` where Id ='$tesemplo'";
+
+$userProfile = $_POST['UserProfile'];
+
 $allEmployees = mysqli_query($con, $all);
 $total = mysqli_fetch_all($allEmployees, MYSQLI_ASSOC);
+
+
+if (isset($userProfile)){
+    $profile = mysqli_query($con, $tesemplo);
+    $page = mysqli_fetch_all($profile, MYSQLI_ASSOC);
+
+}
 
 ?>
 
@@ -38,6 +49,9 @@ $total = mysqli_fetch_all($allEmployees, MYSQLI_ASSOC);
     <p> <?php echo $EmployeeData['Surname']; ?></p>
     <p> <?php echo $EmployeeData['Age']; ?></p>
     
+    <form action="User_account.php" method="POST">
+    <input type="submit" value="Go to <?php echo $EmployeeData['Firstname']; ?> profile" name="UserProfile" />
+</form>
    
     </div>
 

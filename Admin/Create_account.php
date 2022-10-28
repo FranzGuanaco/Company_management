@@ -1,9 +1,6 @@
 <?php
-$host= "localhost";
-$user = "root";
-$password = "root";
-$db = "Corporate_management";
 
+require 'connection.php';
 
 $con = mysqli_connect($host, $user, $password, $db);
 
