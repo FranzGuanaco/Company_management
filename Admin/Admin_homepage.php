@@ -3,22 +3,18 @@
 
 require 'connection.php';
 
-
-$con = mysqli_connect($host, $user, $password, $db);
-
 $all = "SELECT * FROM `Employees`";
 
-$testemplo =$EmployeeData['Id'];
-$test = "SELECT * FROM `Employees` where Id ='$tesemplo'";
+$userTest = "SELECT * FROM `Employees` where Id = $test ";
 
-$userProfile = $_POST['UserProfile'];
+$userProfile = $_POST['lo'];
 
 $allEmployees = mysqli_query($con, $all);
 $total = mysqli_fetch_all($allEmployees, MYSQLI_ASSOC);
 
 
 if (isset($userProfile)){
-    $profile = mysqli_query($con, $tesemplo);
+    $profile = mysqli_query($con, $userTest);
     $page = mysqli_fetch_all($profile, MYSQLI_ASSOC);
 
 }
@@ -48,9 +44,11 @@ if (isset($userProfile)){
     <p> <?php echo $EmployeeData['Firstname']; ?></p>
     <p> <?php echo $EmployeeData['Surname']; ?></p>
     <p> <?php echo $EmployeeData['Age']; ?></p>
+
+   <?php $test = $EmployeeData['Id'] ?>
     
     <form action="User_account.php" method="POST">
-    <input type="submit" value="Go to <?php echo $EmployeeData['Firstname']; ?> profile" name="UserProfile" />
+    <input type="submit" value="Go to <?php echo $EmployeeData['Firstname']; ?> profile" name="lo" />
 </form>
    
     </div>
