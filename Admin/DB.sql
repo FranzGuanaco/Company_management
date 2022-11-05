@@ -1,0 +1,1 @@
+CREATE DATABASE "Corporate_management";

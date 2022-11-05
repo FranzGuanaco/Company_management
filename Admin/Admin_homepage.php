@@ -5,15 +5,15 @@ require 'connection.php';
 
 $all = "SELECT * FROM `Employees`";
 
-$userTest = "SELECT * FROM `Employees` where Id = $test ";
-
-$userProfile = $_POST['lo'];
 
 $allEmployees = mysqli_query($con, $all);
 $total = mysqli_fetch_all($allEmployees, MYSQLI_ASSOC);
 
 
-if (isset($userProfile)){
+if (isset($_POST['lo'])&& isset($_POST['detail'])) {
+
+    $employeeID = 1;
+    $userTest = "SELECT * FROM `Employees` where Id = $employeeID ";
     $profile = mysqli_query($con, $userTest);
     $page = mysqli_fetch_all($profile, MYSQLI_ASSOC);
 
@@ -36,7 +36,9 @@ if (isset($userProfile)){
 
 
 
-<?php foreach ($total as $EmployeeData) { ?>
+<?php foreach ($total as $EmployeeData) { 
+
+    $employeeID = $EmployeeData['Id'] ?>
 
     <div class="square_user">
 
@@ -46,9 +48,13 @@ if (isset($userProfile)){
     <p> <?php echo $EmployeeData['Age']; ?></p>
 
    <?php $test = $EmployeeData['Id'] ?>
-    
+   
+   <a href= "User_account.php?Id=<?php echo $EmployeeData['Id']; ?>">jnjnkjn </a>
+
     <form action="User_account.php" method="POST">
-    <input type="submit" value="Go to <?php echo $EmployeeData['Firstname']; ?> profile" name="lo" />
+    <input type='hidden' name='detail' value='".$employeeID."'>
+    <input type="submit" value= "voici <?php echo $EmployeeData['Firstname'] ?>"  name="lo" ></input>
+    
 </form>
    
     </div>
