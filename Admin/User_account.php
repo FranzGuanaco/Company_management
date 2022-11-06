@@ -3,10 +3,18 @@ require 'connection.php';
 
 $userID = $_GET['Id'];
 
-$userDetails = "SELECT * FROM `Employees` where id = $userID";
+$userDetails = "SELECT * FROM `Employees` where Id = $userID";
+$supp = "DELETE FROM `Employees` where Id = $userID";
 
 $Employees = mysqli_query($con, $userDetails);
 $result = mysqli_fetch_all($Employees, MYSQLI_ASSOC);
+
+if (isset($_POST['suppression'])){
+    $deleteEmployee = mysqli_query($con, $supp);
+    $delete = mysqli_fetch_all($deleteEmployee, MYSQLI_ASSOC);
+
+}
+
 
 ?>
 
@@ -34,6 +42,14 @@ $result = mysqli_fetch_all($Employees, MYSQLI_ASSOC);
    
     </div>
 
+    
+
+    <form action="User_account.php?Id=<?php echo $Details['Id']; ?>" method="POST">
+    
+    <input type="submit" value= "Supprimer <?php echo $Details['Firstname'] ?>"  name="suppression" ></input>
+    
+    </form>
+    
     <?php
         }
 
