@@ -45,10 +45,11 @@ if (isset($_POST['suppression'])){
     
 
     <form action="User_account.php?Id=<?php echo $Details['Id']; ?>" method="POST">
-    
     <input type="submit" value= "Supprimer <?php echo $Details['Firstname'] ?>"  name="suppression" ></input>
-    
     </form>
+
+
+    <a href= "Edit_user.php?Id=<?php echo $Details['Id']; ?>">Edit </a>
     
     <?php
         }
