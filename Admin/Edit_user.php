@@ -3,10 +3,12 @@ require 'connection.php';
 
 $userID = $_GET['Id'];
 $id = $_POST['identite'];
-$name = $_POST['identite'];
+$name = $_POST['fname'];
+$surname = $_POST['sname'];
+$age = $_POST['age'];
 
 $userDetails = "SELECT * FROM `Employees` where Id = $userID";
-$change = "UPDATE Employees SET Id = $name where Id = $userID";
+$change = "UPDATE Employees SET Surname = $surname where Id = $userID";
 
 $Employees = mysqli_query($con, $userDetails);
 $result = mysqli_fetch_all($Employees, MYSQLI_ASSOC);
@@ -38,12 +40,12 @@ if (isset ($_POST['validate'])){
 
 <form action="Edit_user.php?Id=<?php echo $Details['Id']; ?>" method="POST">
 
-        <input type="text" id="id" placeholder=<?php echo $_GET['Id']; ?> name="identite"> 
-        <input type="submit" name="validate" hidden><br>
+        <input type="text" id="id" placeholder=<?php echo $Details['Id']; ?> name="identite"> <br>
+        <input type="text" id="fname" placeholder=<?php echo $Details ['Firstname']; ?> name="fname"> <br>
+        <input type="text" id="sname" placeholder=<?php echo $Details ['Surname']; ?> name="sname"> <br>
+        <input type="text" id="age" placeholder=<?php echo $Details ['Age']; ?> name="age"> <br>
 
-        <input type="text" id="fname" value=<?php echo $Details ['Firstname']; ?> > <br>
-        <input type="text" id="sname" value=<?php echo $Details ['Surname']; ?> > <br>
-        <input type="text" id="age" value=<?php echo $Details ['Age']; ?> > <br>
+        <input type="submit" name="validate" hidden><br>
         
     </form>
 
