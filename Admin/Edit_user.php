@@ -8,7 +8,7 @@ $surname = $_POST['sname'];
 $age = $_POST['age'];
 
 $userDetails = "SELECT * FROM `Employees` where Id = $userID";
-$change = "UPDATE Employees SET Surname = $surname where Id = $userID";
+$change = "UPDATE Employees SET Surname = '" .$_POST['sname']. "', Firstname = '" .$_POST['fname']. "' where Id = $userID";
 
 $Employees = mysqli_query($con, $userDetails);
 $result = mysqli_fetch_all($Employees, MYSQLI_ASSOC);
@@ -53,9 +53,9 @@ if (isset ($_POST['validate'])){
 
 
 
-<form action="User_account.php?Id=<?php echo $Details['Id']; ?>" method="POST">
+
 <input type="submit" value= "Supprimer <?php echo $Details['Firstname'] ?>"  name="suppression" >
-</form>
+
 
 
 <a href= "Edit_user.php?Id=<?php echo $Details['Id']; ?>">Edit </a>
