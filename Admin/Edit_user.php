@@ -8,16 +8,29 @@ $surname = $_POST['sname'];
 $age = $_POST['age'];
 
 $userDetails = "SELECT * FROM `Employees` where Id = $userID";
-$change = "UPDATE Employees SET Surname = '" .$_POST['sname']. "', Firstname = '" .$_POST['fname']. "' where Id = $userID";
+$changefname = "UPDATE Employees SET Firstname ='" .$_POST['fname']. "' where Id = $userID";
+$changesname = "UPDATE Employees SET  Surname = '" .$_POST['sname']. "' where Id = $userID";
+$changeAge = "UPDATE Employees SET  Age = $age where Id = $userID";
 
 $Employees = mysqli_query($con, $userDetails);
 $result = mysqli_fetch_all($Employees, MYSQLI_ASSOC);
 
-if (isset ($_POST['validate'])){
-    $chngt = mysqli_query($con, $change);
-    $test = mysqli_fetch_all($chngt, MYSQLI_ASSOC);
 
-}
+        if (isset($_POST['validate'])) {
+            
+        if (!empty($_POST['fname'])){
+            $chngt = mysqli_query($con, $changefname);
+            $test = mysqli_fetch_all($chngt, MYSQLI_ASSOC);}
+
+            if (!empty($_POST['sname'])) {
+            $chngt = mysqli_query($con, $changesname);
+            $test = mysqli_fetch_all($chngt, MYSQLI_ASSOC);
+            }
+            if (!empty($_POST['age'])) {
+                $chngt = mysqli_query($con, $changeAge);
+                $test = mysqli_fetch_all($chngt, MYSQLI_ASSOC);
+            }
+        }
 
 ?>
 
