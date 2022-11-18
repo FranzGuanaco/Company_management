@@ -77,5 +77,7 @@ $result = mysqli_fetch_all($Employees, MYSQLI_ASSOC);
     }
 
     ?>
+
+    
 </body>
 </html>
