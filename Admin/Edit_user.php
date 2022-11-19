@@ -60,7 +60,7 @@ $result = mysqli_fetch_all($Employees, MYSQLI_ASSOC);
 
         <input type="submit" name="validate" hidden><br>
         
-    </form>
+  
 
 </div>
 
