@@ -8,11 +8,10 @@ $db = "Corporate_management";
 try {
     $con = new PDO("mysql: host=$host; dbname=$db", $user, $password);
     $con ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $name = $_POST['Name'];
+
+    $name = htmlspecialchars($_POST['Name']);
     $password = $_POST['Password'];
 
-    $allNames = "SELECT Name FROM `Login`";
-    $allPassword = "SELECT Password FROM `Login`";
 
     $userDetails = "SELECT * FROM `Employees` where Id = $userID";
     $check = $con -> prepare ('SELECT * FROM `Login` WHERE Name = ? and Password = ?');
