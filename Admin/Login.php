@@ -1,26 +1,64 @@
 <?php
 
-require 'connection.php';
+$host ='localhost';
+$user = "root";
+$password = "root";
+$db = "Corporate_management";
 
-$name = $_POST['name'];
-$password = $_POST['password'];
+try {
+    $con = new PDO("mysql: host=$host; dbname=$db", $user, $password);
+    $con ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $name = $_POST['Name'];
+    $password = $_POST['Password'];
+
+    $allNames = "SELECT Name FROM `Login`";
+    $allPassword = "SELECT Password FROM `Login`";
+
+    $userDetails = "SELECT * FROM `Employees` where Id = $userID";
+    $check = $con -> prepare ('SELECT * FROM `Login` WHERE Name = ? and Password = ?');
+    $check -> execute(array($name, $password));
+
+
+        if (isset($_POST['validate'])) {
+
+        if ($check->rowCount() > 0) {
+
+            header("Location:Admin_homepage.php");
+        }
+
+        else {
+            echo 'raté';
+        }}
+    
+}
+
+catch(PDOException $e) {
+    echo "connection failed" . $e ->getMessage();
+}
+
+
+/* require 'connection.php';
+
+$name = $_POST['Name'];
+$password = $_POST['Password'];
 
 $allNames = "SELECT Name FROM `Login`";
 $allPassword = "SELECT Password FROM `Login`";
 
 $userDetails = "SELECT * FROM `Employees` where Id = $userID";
+$check = "SELECT * FROM `Login` WHERE Name = ? and Password = ?";
+
 
         if (isset($_POST['validate'])) {
 
-        if (($name == 'Pierre') && ($password == 1)){
+        if (($name == htmlspecialchars_decode ('Pierre')) && ($password == 1)) {
 
             header("Location:Admin_homepage.php");
         }
 
         else {
             header("Location:Login.php");
-
-        }}
+        }}  */
 
         
 ?>
@@ -43,8 +81,8 @@ $userDetails = "SELECT * FROM `Employees` where Id = $userID";
 <div class="square_user">
 
 <form method="POST">
-    <input type="text" placeholder="name" name="name"> <br> <br>
-    <input type="text" placeholder="password" name="password">
+    <input type="text" placeholder="Name" name="Name"> <br> <br>
+    <input type="text" placeholder="password" name="Password">
 
 <input type="submit" name="validate" ><br>
 
