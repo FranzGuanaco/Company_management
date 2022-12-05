@@ -5,19 +5,27 @@ require 'connection.php';
 
 $all = "SELECT * FROM `Employees`";
 
-
 $allEmployees = mysqli_query($con, $all);
 $total = mysqli_fetch_all($allEmployees, MYSQLI_ASSOC);
+$name = $_POST['fname'];
 
 
-if (isset($_POST['lo'])&& isset($_POST['detail'])) {
+    if (isset($_POST['lo'])&& isset($_POST['detail'])) {
 
-    $employeeID = 1;
-    $userTest = "SELECT * FROM `Employees` where Id = $employeeID ";
-    $profile = mysqli_query($con, $userTest);
-    $page = mysqli_fetch_all($profile, MYSQLI_ASSOC);
+        $employeeID = 1;
+        $userTest = "SELECT * FROM `Employees` where Id = $employeeID ";
+        $profile = mysqli_query($con, $userTest);
+        $page = mysqli_fetch_all($profile, MYSQLI_ASSOC);
+    }
 
-}
+
+    if (isset($_POST['submit'])){
+        if (!empty($_POST['fname'])){
+
+    $userDetails = "SELECT * FROM `Employees` where Firstname = '$name'";
+    $Employees = mysqli_query($con, $userDetails);
+    $total = mysqli_fetch_all($Employees, MYSQLI_ASSOC);
+    }}
 
 ?>
 
@@ -34,11 +42,19 @@ if (isset($_POST['lo'])&& isset($_POST['detail'])) {
 </head>
 <body>
 
-
-
+<form action="Admin_homepage.php" method="POST" >
+            
+            <input type="text" id="fname" name="fname"><br><br>
+            <button type="submit" name="submit">Submit using POST</button>
+            </form>
+    
 <?php foreach ($total as $EmployeeData) { 
 
-    $employeeID = $EmployeeData['Id'] ?>
+$employeeID = $EmployeeData['Id'] ?>
+
+          
+
+           
 
     <div class="square_user">
 
