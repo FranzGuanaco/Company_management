@@ -1,0 +1,6 @@
+TODO
+
+- mettre la page de recherche dans la meme page que l'accueil 
+- pour la recherche mettre des suggestion et pas que le Firstname
+- page du login etant la premiere 
+- page creation de compte

@@ -3,6 +3,29 @@
 require 'connection.php';
 
 
+//SMTP way
+require 'vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+
+$mail = new PHPMailer(true);
+$mail-> isSMTP();
+$mail-> isSMTPAuth = true;
+
+$mail -> Host = 'chevin.pierre.tomas@gmail.com';
+$mail -> SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+$mail -> Port = 587;
+
+$mail -> Username = 'chevin.pierre.tomas@gmail.com';
+$mail -> Password = 'Elsalvador60?';
+$mail -> setFrom($email, $name);
+$mail -> addAddress('chevin.pierre.tomas@gmail.com', 'Pierre');
+
+
+
+//SMTP finish
+
 $to = 'chevin.pierre.tomas@gmail.com';
 $subject = 'the subject';
 $message = 'hello';
